@@ -5,7 +5,11 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, Vcl.ExtCtrls,
-  UNetworkProbe.TDiscoveryClient, UNetworkProbe.TExchangeClient, System.JSON;
+  UNetworkProbe.TDiscoveryClient,
+  UNetworkProbe.TExchangeClient,
+  UNetworkProbe.TDiscoveryInformation,
+  UNetworkProbe.TDiscoveryResult,
+  System.JSON;
 
 type
   TForm1 = class(TForm)
@@ -16,6 +20,7 @@ type
     cmdPanel: TPanel;
     Button2: TButton;
     Memo1: TMemo;
+    Button3: TButton;
 
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -36,6 +41,7 @@ type
 
 var
   TTForm1: TForm1;
+
 
 implementation
 
@@ -80,7 +86,6 @@ class constructor TForm1.Create;
  begin
    { Initialize the static FList member }
    DiscoveryClient := TDiscoveryClient.Create;
-
  end;
 
 procedure TForm1.FormCreate(Sender: TObject);
@@ -100,27 +105,38 @@ begin
 end;
 
 procedure TForm1.StartNPSSearch();
+var
+  Result : TDiscoveryResult;
+
 begin
   try
     MmLog.Clear;
     LogMessage('Iniciando pesquisa...');
-    DiscoveryClient.StartSearch;
-    LogMessage('Endereço encontrado: ' + DiscoveryClient.HostAddress);
-    if DiscoveryClient.HostAddress <> TDiscoveryClient.NONE then
+
+    Result := DiscoveryClient.Sync();
+    ShowMessage('Retorno: ' + Result.GetDiscoveryStatus.ToString);
+    if Result.IsFoundStatus() then
     begin
-      ServerAddress := DiscoveryClient.HostAddress;
-      cmdPanel.Enabled := True;
-      Button1.Enabled := False;
-      LogMessage('Habilitando comandos!');
-      ExchangeClient := TExchangeClient.Create(DiscoveryClient.HostAddress);
+      LogMessage('Endereço encontrado: ' + Result.GetDiscoveryInformation.GetServerAddress);
+      if Result.GetDiscoveryInformation.GetServerAddress <> TDiscoveryInformation.NONE_ADDRESS then
+      begin
+        ServerAddress := Result.GetDiscoveryInformation.GetServerAddress;
+        cmdPanel.Enabled := True;
+        Button1.Enabled := False;
+        LogMessage('Habilitando comandos!');
+        ExchangeClient := TExchangeClient.Create(ServerAddress);
+      end;
+    end
+    else
+    begin
+      ShowMessage('Erro: ' + Result.GetDiscoveryStatus.ToString);
     end;
 
   except
-  raise;
-    {on E : Exception do
+    on E : Exception do
     begin
-      LogMessage(e.Message);
-    end;}
+      ShowMessage('Exc: ' + E.message);
+    end;
 
   end;
 end;

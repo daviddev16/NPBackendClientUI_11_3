@@ -4,7 +4,7 @@
         <ProjectVersion>19.5</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>1</TargetedPlatforms>
         <AppType>Application</AppType>
@@ -61,7 +61,6 @@
         <Custom_Styles>Light|VCLSTYLE|$(BDSCOMMONDIR)\Styles\Light.vsf</Custom_Styles>
         <VerInfo_Locale>1046</VerInfo_Locale>
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
-        <DCC_UnitSearchPath>C:\Program Files (x86)\Alterdata\Biblioteca\Experimental;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <DCC_UsePackage>soapserver;IndySystem;vclwinx;fmx;vclie;DbxCommonDriver;bindengine;vcldb;IndyIPCommon;VCLRESTComponents;FireDACCommonODBC;FireDACCommonDriver;appanalytics;IndyProtocols;vclx;IndyIPClient;dbxcds;vcledge;vclFireDAC;bindcompvclwinx;bindcomp;FireDACCommon;IndyCore;RESTBackendComponents;bindcompfmx;bindcompdbx;inetdb;rtl;FireDACMySQLDriver;FireDACSqliteDriver;DbxClientDriver;FireDACADSDriver;RESTComponents;soapmidas;DBXSqliteDriver;vcl;vclactnband;IndyIPServer;dsnapxml;fmxFireDAC;dbexpress;dsnapcon;adortl;DBXMySQLDriver;VclSmp;inet;vclimg;vcltouch;FireDACPgDriver;FireDAC;fmxase;inetdbxpress;xmlrtl;tethering;dbrtl;bindcompvcl;dsnap;fmxdae;CloudService;FireDACMSAccDriver;CustomIPTransport;fmxobj;bindcompvclsmp;soaprtl;vcldsnap;DBXInterBaseDriver;FireDACIBDriver;NetworkProbeClient_11_3;$(DCC_UsePackage)</DCC_UsePackage>
@@ -72,7 +71,6 @@
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <Icon_MainIcon>AlterdataClient_11_3_Icon.ico</Icon_MainIcon>
         <AppDPIAwarenessMode>none</AppDPIAwarenessMode>
-        <UsePackages>true</UsePackages>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <DCC_UsePackage>soapserver;IndySystem;vclwinx;fmx;vclie;DbxCommonDriver;bindengine;vcldb;IndyIPCommon;VCLRESTComponents;FireDACCommonODBC;FireDACCommonDriver;appanalytics;IndyProtocols;vclx;IndyIPClient;dbxcds;vcledge;vclFireDAC;bindcompvclwinx;bindcomp;FireDACCommon;IndyCore;RESTBackendComponents;bindcompfmx;bindcompdbx;inetdb;rtl;FireDACMySQLDriver;FireDACSqliteDriver;DbxClientDriver;FireDACADSDriver;RESTComponents;soapmidas;DBXSqliteDriver;vcl;vclactnband;IndyIPServer;dsnapxml;fmxFireDAC;dbexpress;dsnapcon;adortl;DBXMySQLDriver;VclSmp;inet;vclimg;vcltouch;FireDACPgDriver;FireDAC;fmxase;inetdbxpress;xmlrtl;tethering;dbrtl;bindcompvcl;dsnap;fmxdae;CloudService;FireDACMSAccDriver;CustomIPTransport;fmxobj;bindcompvclsmp;soaprtl;vcldsnap;DBXInterBaseDriver;FireDACIBDriver;$(DCC_UsePackage)</DCC_UsePackage>
@@ -93,20 +91,20 @@
         <UsePackages>true</UsePackages>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
+        <Icon_MainIcon>AlterdataClient_11_3_Icon.ico</Icon_MainIcon>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
         <DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
         <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
         <DCC_DebugInformation>0</DCC_DebugInformation>
-        <UsePackages>true</UsePackages>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Icon_MainIcon>AlterdataClient_11_3_Icon.ico</Icon_MainIcon>
-        <UsePackages>true</UsePackages>
+        <UsePackages>false</UsePackages>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">

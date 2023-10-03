@@ -70,5 +70,14 @@ object Form1: TForm1
       ScrollBars = ssVertical
       TabOrder = 2
     end
+    object Button3: TButton
+      Left = 328
+      Top = 63
+      Width = 121
+      Height = 25
+      Caption = 'Test DS'
+      TabOrder = 3
+      OnClick = Button2Click
+    end
   end
 end
