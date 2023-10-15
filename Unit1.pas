@@ -9,6 +9,7 @@ uses
   UNetworkProbe.TExchangeClient,
   UNetworkProbe.TDiscoveryInformation,
   UNetworkProbe.TDiscoveryResult,
+  UNetworkProbe.TUtility,
   System.JSON;
 
 type
@@ -84,7 +85,6 @@ end;
 
 class constructor TForm1.Create;
  begin
-   { Initialize the static FList member }
    DiscoveryClient := TDiscoveryClient.Create;
  end;
 
@@ -117,6 +117,7 @@ begin
     ShowMessage('Retorno: ' + Result.GetDiscoveryStatus.ToString);
     if Result.IsFoundStatus() then
     begin
+
       LogMessage('Endereço encontrado: ' + Result.GetDiscoveryInformation.GetServerAddress);
       if Result.GetDiscoveryInformation.GetServerAddress <> TDiscoveryInformation.NONE_ADDRESS then
       begin

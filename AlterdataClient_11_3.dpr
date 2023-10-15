@@ -14,6 +14,6 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   TStyleManager.TrySetStyle('Light');
-  Application.CreateForm(TForm1, TTForm1);
+  Application.CreateForm(TTTForm1, TTForm1);
   Application.Run;
 end.
